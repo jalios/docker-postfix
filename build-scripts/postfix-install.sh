@@ -18,6 +18,8 @@ do_ubuntu() {
     apt-get install -y postfix
     apt-get install -y opendkim
     apt-get install -y ca-certificates tzdata supervisor rsyslog bash opendkim-tools curl libcurl4 postfix-lmdb netcat
+    cp -f /etc/host.conf /etc/hosts /etc/nsswitch.conf /etc/resolv.conf /etc/services /var/spool/postfix/etc
+    sed -E -i 's/(-\s*)y(\s*)/\1n\2/g' /etc/postfix/master.cf 
 }
 
 if [ -f /etc/alpine-release ]; then
